@@ -1,0 +1,24 @@
+:root {
+  --content-width: 920px;
+}
+
+body {
+  line-height: 1.7;
+}
+
+.quarto-title-meta {
+  font-size: 0.95rem;
+}
+
+main.content {
+  max-width: var(--content-width);
+}
+
+pre,
+code {
+  font-size: 0.95em;
+}
+
+.listing-description {
+  color: var(--bs-secondary-color);
+}
