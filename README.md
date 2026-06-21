@@ -1,4 +1,4 @@
-# Research Notes
+# Blog
 
 Quarto로 만든 연구 노트 블로그입니다.
 
