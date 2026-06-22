@@ -14,9 +14,48 @@ main.content {
   max-width: var(--content-width);
 }
 
-pre,
 code {
   font-size: 0.95em;
+}
+
+pre {
+  font-size: 0.95em;
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  border-left: 4px solid var(--bs-primary);
+  border-radius: 6px;
+  padding: 1rem 1.125rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+pre code {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+}
+
+.pseudocode {
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  border-left: 4px solid var(--bs-primary);
+  border-radius: 6px;
+  padding: 1rem 1.125rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.pseudocode > :first-child {
+  margin-top: 0;
+}
+
+.pseudocode > :last-child {
+  margin-bottom: 0;
+}
+
+.pseudocode ol,
+.pseudocode ul {
+  margin-bottom: 0.85rem;
 }
 
 .listing-description {
