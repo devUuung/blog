@@ -40,9 +40,29 @@ pre code {
   border: 1px solid var(--bs-border-color);
   border-left: 4px solid var(--bs-primary);
   border-radius: 6px;
+  color: var(--bs-body-color);
   padding: 1rem 1.125rem;
   margin: 1.25rem 0;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.pseudocode code,
+.pseudocode .math {
+  color: inherit;
+}
+
+body.quarto-dark pre,
+body.quarto-dark .pseudocode {
+  background: #2b3035;
+  border-color: #495057;
+  border-left-color: var(--bs-primary);
+  color: #f8f9fa;
+}
+
+body.quarto-dark pre code,
+body.quarto-dark .pseudocode code,
+body.quarto-dark .pseudocode .math {
+  color: inherit;
 }
 
 .pseudocode > :first-child {
