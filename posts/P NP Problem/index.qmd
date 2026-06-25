@@ -29,11 +29,11 @@ P와 NP는 보통 결정 문제(decision problem)에 대해 정의된다. 결정
 
 예를 들어 최단 경로 문제를 생각해보자.
 
-> 그래프에서 노드 $s$에서 노드 $t$까지 가는 최단 경로를 구하라.
+그래프에서 노드 $s$에서 노드 $t$까지 가는 최단 경로를 구하라.
 
 이 문제 자체는 최적화 문제이다. 하지만 다음처럼 바꾸면 결정 문제가 된다.
 
-> 그래프에서 노드 $s$에서 노드 $t$까지 길이가 $k$ 이하인 경로가 존재하는가?
+그래프에서 노드 $s$에서 노드 $t$까지 길이가 $k$ 이하인 경로가 존재하는가?
 
 답은 yes 또는 no이다. 계산 복잡도 이론에서는 이런 식으로 문제를 결정 문제 형태로 바꾸어 다루는 경우가 많다.
 
@@ -102,7 +102,7 @@ $$
 
 직관적으로 말하면 다음 질문이다.
 
-> 검증하기 쉬운 문제는 항상 풀기도 쉬운가?
+검증하기 쉬운 문제는 항상 풀기도 쉬운가?
 
 현재까지는 이 질문에 대한 답은 모르고, 밀레니엄 문제로 등록되어 있다. 여담으로, $P = NP$인가에 대한 증명은 나오지 않았지만, 추측상 $P \neq NP$로 받아들여지는 추세로 알고있다.
 
@@ -130,10 +130,128 @@ $$
 SAT는 이 식을 참으로 만드는 $x_1, x_2, x_3$의 값이 존재하는지 묻는다.
 SAT가 중요한 이유는 최초로 NP-complete임이 증명된 문제이기 때문이다. 따라서 SAT를 다항시간 안에 풀 수 있다면, 모든 NP 문제를 다항시간 안에 풀 수 있다.
 
-여담으로, sequential recommendation의 counterfactual explanation 문제도 NP-complete이다. Scarcelli et al. [-@scarcelli2025demystifying]는 사용자 interaction sequence를 최소한으로 바꾸어 추천 결과를 바꾸는 counterfactual sequence를 찾는 문제를 다룬다.
-이때 최적의 counterfactual sequence를 직접 찾는 문제는 탐색 공간이 매우 크다. 길이가 $n$인 sequence에서 각 위치를 여러 item으로 바꿀 수 있다면 가능한 후보 sequence 수가 빠르게 증가한다.
-논문에서는 이 문제의 decision version을 정의한다. 즉, 원래 sequence와의 거리가 $\epsilon$ 이하이면서 추천 결과를 바꾸는 valid counterfactual sequence가 존재하는지를 묻는다. 저자들은 이 문제를 $\epsilon$-VCS라고 부르고, 해당 문제를 NP-complete로 알려진 Vertex Cover 결정 문제로 다항 시간내에 변환하여(polynomial-time reduction을 구성) $\epsilon$-VCS가 NP-complete임을 보인다.
+어떤 문제가 NP-complete라는 진단을 받으면, $P=NP$가 아닌 한 모든 instance를 다항시간 안에 정확하게 푸는 알고리즘은 기대하기 어렵다.
+그래서 실제 알고리즘 설계에서는 다음 선택지를 검토하게 된다.
 
+- exact solution을 포기하고 approximation algorithm을 쓴다.
+- 항상 최적은 아니지만 빠르게 좋은 답을 주는 heuristic을 쓴다.
+- 입력 크기가 작은 경우에만 exact algorithm을 사용한다.
+- 문제의 특수한 구조를 가정해서 tractable한 subclass를 찾는다.
+
+# NP 주변에서 자주 나오는 복잡도 class
+
+논문을 읽다 보면 P, NP, NP-hard, NP-complete만으로는 부족한 경우가 많다.
+특히 알고리즘을 제안하거나 분석하는 논문에서는 exact computation이 어려운지, 병렬화가 가능한지, 특정 parameter를 고정하면 쉬워지는지 같은 질문을 자주 다룬다.
+그래서 다음 용어들이 함께 등장한다.
+
+## #P
+
+$\#P$는 "sharp P"라고 읽는다.
+NP가 yes/no를 묻는 decision problem을 다룬다면, $\#P$는 가능한 해의 **개수**를 세는 counting problem을 다룬다.
+
+예를 들어 SAT는 다음을 묻는다.
+
+이 논리식을 만족하는 assignment가 하나라도 존재하는가?
+
+반면 #SAT는 다음을 묻는다.
+
+이 논리식을 만족하는 assignment가 몇 개인가?
+
+SAT는 decision problem이고, #SAT는 counting problem이다.
+보통 counting은 existence보다 더 많은 정보를 요구한다.
+그래서 어떤 문제가 $\#P$-hard라는 말은, 단순히 답이 존재하는지 판별하는 수준을 넘어 가능한 경우의 수나 합을 계산하는 어려움이 들어 있다는 뜻으로 이해하면 된다.
+
+더 쉬운 예로 경로 문제를 생각할 수 있다.
+두 지점 $s$와 $t$가 있을 때, decision problem은 다음처럼 묻는다.
+
+$s$에서 $t$까지 갈 수 있는 경로가 존재하는가?
+
+반면 counting problem은 다음처럼 묻는다.
+
+$s$에서 $t$까지 갈 수 있는 경로가 모두 몇 개인가?
+
+첫 번째 질문은 경로 하나만 찾으면 yes라고 답할 수 있다.
+두 번째 질문은 가능한 경로들을 세어야 한다.
+그래서 counting problem은 단순한 existence problem보다 더 많은 정보를 요구한다.
+
+따라서 $\#P$-hard라는 진단은 "가능한 경우를 세거나 합산하는 exact computation 자체가 어렵다"는 신호가 된다.
+이런 경우 논문에서는 제한된 입력 class를 찾거나, sampling, approximation, parameterized algorithm을 사용하는 방향으로 넘어가는 경우가 많다.
+
+## NC
+
+$NC$는 병렬 계산에서 중요한 class이다.
+이름은 **Nick's Class**에서 왔고, Nicholas Pippenger의 이름을 딴 것으로 알려져 있다.
+Stephen Cook이 Pippenger의 병렬 계산 연구를 기리며 이 이름을 붙였다고 자주 설명된다.
+
+$NC$에 속한다는 것은 대략 다음을 뜻한다.
+
+polynomial number의 processor를 사용하면 poly-logarithmic time에 풀 수 있다.
+
+여기서 poly-logarithmic time은 입력 크기 $n$에 대해 다음처럼 $\log n$의 다항식으로 표현되는 시간을 말한다.
+
+$$
+O((\log n)^k)
+$$
+
+예를 들어 $NC^2$는 대략 $O((\log n)^2)$ depth의 병렬 circuit으로 풀 수 있는 문제 class를 뜻한다.
+이 표현은 "일반적인 sequential algorithm이 무조건 빠르다"는 말이 아니다.
+오히려 다음 의미에 가깝다.
+
+충분한 병렬 자원을 쓸 수 있다면 계산 구조가 얕게 펼쳐질 수 있다.
+
+예를 들어 여러 수의 합을 구하는 문제를 생각해보자.
+한 processor가 왼쪽부터 차례대로 더하면 입력이 길어질수록 시간이 길어진다.
+하지만 충분히 많은 processor가 있으면, 먼저 인접한 두 수씩 더하고, 그 결과를 다시 두 개씩 더하는 식으로 tree처럼 계산할 수 있다.
+이 경우 계산 단계 수는 입력 개수 $n$에 대해 대략 $\log n$ 수준으로 줄어든다.
+이런 식으로 계산을 얕은 병렬 단계로 펼칠 수 있는지가 $NC$에서 중요한 관점이다.
+
+그래서 어떤 문제가 $NC$에 속한다는 결과는 병렬화 가능성에 대한 좋은 신호이다.
+sequential time이 자동으로 작다는 뜻은 아니지만, 대규모 계산에서 parallel hardware를 활용할 수 있는 이론적 근거가 된다.
+
+## Parameterized complexity: FPT와 XP
+
+어떤 문제는 전체 입력 크기만 보면 어렵지만, 특정 parameter가 작으면 풀 만해지는 경우가 있다.
+예를 들어 그래프 문제에서는 treewidth, 경로 길이, 삭제할 vertex 수 같은 값이 parameter가 될 수 있다.
+이런 관점을 **parameterized complexity**라고 한다.
+
+입력 크기를 $n$, parameter를 $k$라고 하자.
+
+FPT는 fixed-parameter tractable의 약자이다.
+문제가 FPT라는 것은 실행 시간이 다음 형태로 bounded된다는 뜻이다.
+
+$$
+f(k) \cdot n^c
+$$
+
+여기서 $f(k)$는 parameter에만 의존하는 함수이고, $c$는 $k$와 무관한 상수이다.
+즉 $k$가 작으면 $f(k)$가 크더라도, 입력 크기 $n$에 대해서는 항상 같은 차수의 polynomial time이 유지된다.
+
+XP는 FPT보다 약한 class이다.
+XP에서는 실행 시간이 다음처럼 될 수 있다.
+
+$$
+n^{f(k)}
+$$
+
+즉 parameter $k$를 고정하면 polynomial time이지만, polynomial의 차수 자체가 $k$에 따라 커질 수 있다.
+그래서 $k$가 조금만 커져도 실용적으로는 빠르지 않을 수 있다.
+
+둘의 차이는 다음처럼 볼 수 있다.
+
+| Class | 시간 형태 | 직관 |
+|---|---|---|
+| FPT | $f(k)n^c$ | parameter가 작으면 비교적 강한 tractability |
+| XP | $n^{f(k)}$ | parameter를 고정하면 polynomial이지만 차수가 커질 수 있음 |
+
+예를 들어 어떤 그래프 문제에서 경로 길이 $k$를 parameter로 둔다고 하자.
+문제가 XP에 들어간다면, $k$를 고정했을 때는 polynomial time algorithm이 있다는 뜻이다.
+하지만 $k$가 커지면 polynomial의 차수가 함께 커질 수 있다.
+반면 FPT라면, $k$에 의존하는 비용은 따로 분리되고 입력 크기 $n$에 대한 polynomial 차수는 고정된다.
+그래서 parameter가 작은 상황에서는 FPT 결과가 XP 결과보다 더 강한 tractability를 의미한다.
+
+FPT나 XP 결과는 "전체 문제는 어려워도, 어떤 parameter가 작으면 풀 수 있다"는 메시지를 준다.
+예를 들어 특정 parameter가 작게 유지되는 입력 class를 다룬다면, hard problem이라도 실용적인 exact algorithm이 가능할 수 있다.
+따라서 parameterized complexity는 단순히 어렵다/쉽다의 이분법보다 더 세밀한 진단을 제공한다.
 
 # 정리
 
@@ -143,3 +261,7 @@ SAT가 중요한 이유는 최초로 NP-complete임이 증명된 문제이기 �
 | NP | 답이 주어졌을 때 다항시간 안에 검증할 수 있는 문제 |
 | NP-hard | NP의 모든 문제만큼 어렵거나 더 어려운 문제 |
 | NP-complete | NP에 속하면서 동시에 NP-hard인 문제 |
+| $\#P$ | 가능한 해의 개수나 합을 세는 counting problem class |
+| $NC$ | 병렬 계산에서 poly-logarithmic time에 풀 수 있는 문제 class |
+| FPT | parameter가 작을 때 $f(k)n^c$ 형태로 풀리는 문제 class |
+| XP | parameter를 고정하면 polynomial time이 되는 문제 class |

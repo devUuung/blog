@@ -6,6 +6,10 @@ date: "2026-06-24"
 categories: [explainable ai, shapley value, tree ensemble, paper review]
 ---
 
+| Venue | Link |
+|---|---|
+| AAAI 2024 | [AAAI Proceedings](https://ojs.aaai.org/index.php/AAAI/article/view/29352) |
+
 # 논문이 해결하려는 문제
 
 Muschalik et al. [-@muschalik2024beyond]의 **Beyond TreeSHAP**은 tree ensemble model의 prediction을 설명할 때, 단일 feature attribution을 넘어서 **feature interaction**까지 효율적으로 계산하는 방법을 제안한다.
@@ -19,7 +23,7 @@ Tree ensemble은 이런 tree를 여러 개 모아 prediction을 만드는 모델
 얕은 decision tree 하나는 사람이 직접 따라갈 수 있다. 하지만 depth가 깊은 tree가 수백 개, 수천 개 모이면 모델이 왜 특정 prediction을 냈는지 바로 알기 어렵다.
 그래서 XAI, 즉 explainable artificial intelligence에서는 다음 질문을 다룬다.
 
-> 이 모델이 이 특정 입력 $x$에 대해 왜 이런 prediction을 냈는가?
+이 모델이 이 특정 입력 $x$에 대해 왜 이런 prediction을 냈는가?
 
 이 질문은 global explanation이 아니라 local explanation이다.
 Global explanation은 모델 전체의 일반적인 동작을 설명하려는 것이다. 반면 local explanation은 특정 instance $x$ 하나에 대한 prediction을 설명하려는 것이다.
@@ -63,7 +67,7 @@ ML explanation에서는 player를 feature로 보고, payoff를 model prediction�
 
 Feature $i$의 Shapley value는 대략 다음 질문의 평균이다.
 
-> 여러 feature subset에 feature $i$를 추가했을 때 prediction이 평균적으로 얼마나 바뀌는가?
+여러 feature subset에 feature $i$를 추가했을 때 prediction이 평균적으로 얼마나 바뀌는가?
 
 수식으로 쓰면 다음과 같다.
 
@@ -82,7 +86,7 @@ $$
 
 이 정의는 직관적이지만 계산이 어렵다. 모든 subset $T$를 봐야 하기 때문이다.
 Feature가 $n$개이면 subset은 대략 $2^n$개이다.
-이런 지수적 증가가 왜 빠르게 부담이 되는지는 이전 [P와 NP 문제](../P%20NP%20Problem/) 글에서도 다룬 적이 있다.
+이런 지수적 증가는 feature 수가 조금만 커져도 빠르게 계산 부담을 만든다.
 TreeSHAP은 tree model의 구조를 이용해 이 계산을 polynomial time으로 줄인 방법이다 [-@lundberg2020local].
 
 # 그런데 단일 feature만 보면 부족하다
@@ -161,7 +165,7 @@ $$
 $q_{j,v}$는 feature $j$를 알게 되었을 때, unknown feature weight 기반 rule이 얼마나 바뀌는지를 나타내는 값이다.
 처음 보면 기호가 복잡하지만, 직관은 단순하다.
 
-> Path에 등장하는 feature들의 가능한 subset contribution을 polynomial 하나에 압축해서 저장한다.
+Path에 등장하는 feature들의 가능한 subset contribution을 polynomial 하나에 압축해서 저장한다.
 
 Polynomial을 전개하면 각 coefficient가 특정 크기의 feature subset contribution을 담는다.
 그 다음 Shapley weight를 coefficient에 곱해 합치면 Shapley value가 나온다.
@@ -351,7 +355,7 @@ Interventional SHAP interaction을 더 효율적으로 계산하는 별도 연�
 
 이 논문의 핵심은 다음 문장으로 요약할 수 있다.
 
-> TreeSHAP-IQ는 Linear TreeSHAP의 polynomial arithmetic을 확장해, tree ensemble에서 any-order Shapley interaction을 효율적으로 계산한다.
+TreeSHAP-IQ는 Linear TreeSHAP의 polynomial arithmetic을 확장해, tree ensemble에서 any-order Shapley interaction을 효율적으로 계산한다.
 
 기존 TreeSHAP은 단일 feature attribution을 빠르게 계산했다.
 하지만 단일 feature attribution은 feature들이 함께 의미를 갖는 상황을 놓칠 수 있다.
@@ -363,6 +367,6 @@ TreeSHAP-IQ는 SII와 n-SII 같은 interaction score를 tree 구조에 맞게 �
 2. TreeSHAP-IQ는 summary polynomial, interaction polynomial, quotient polynomial을 사용해 subset enumeration을 피한다.
 3. Interaction order가 커질수록 조합 수는 여전히 커지므로, 실제 해석에서는 적절한 maximum order $s_0$를 선택해야 한다.
 
-개인적으로 이 논문에서 가장 유용한 관점은 "feature importance"를 feature 하나의 점수로 끝내지 않는다는 점이다.
+이 논문에서 가장 유용한 관점은 "feature importance"를 feature 하나의 점수로 끝내지 않는다는 점이다.
 모델이 실제로 사용하는 신호가 feature의 조합이라면, 설명도 그 조합을 드러내야 한다.
 TreeSHAP-IQ는 tree ensemble이라는 중요한 모델 class에서 그 작업을 정확하고 효율적으로 수행하는 방법을 제시한다.

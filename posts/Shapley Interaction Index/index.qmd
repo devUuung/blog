@@ -6,6 +6,10 @@ date: "2026-06-24"
 categories: [game theory, shapley value, interaction, paper review]
 ---
 
+| Venue | Link |
+|---|---|
+| International Journal of Game Theory, 1999 | [Springer](https://link.springer.com/article/10.1007/s001820050125) |
+
 # 1 Introduction
 
 Grabisch and Roubens [-@grabisch1999axiomatic]의 논문은 cooperative game에서 **player들 사이의 interaction**을 어떻게 정의할 것인가를 다룬다.
@@ -41,7 +45,7 @@ $$
 논문은 이 직관을 임의의 coalition $S$로 확장하고, 이를 Shapley value나 Banzhaf value처럼 axiom으로 정당화하려고 한다.
 즉 논문의 목표는 다음이다.
 
-> Value가 single player의 평균 기여도를 정의한다면, interaction index는 coalition 전체의 상호작용 정도를 정의해야 한다.
+Value가 single player의 평균 기여도를 정의한다면, interaction index는 coalition 전체의 상호작용 정도를 정의해야 한다.
 
 # 2 The Shapley and Banzhaf values
 
@@ -252,7 +256,7 @@ $$
 논문은 먼저 pair $\{i,j\}$를 하나의 combined player $[ij]$로 묶은 reduced game을 생각한다.
 직관은 다음과 같다.
 
-> $i$와 $j$가 positive interaction을 가지면, 둘을 하나로 묶은 player $[ij]$의 value는 단순히 $i$의 value와 $j$의 value를 더한 것보다 커야 한다.
+$i$와 $j$가 positive interaction을 가지면, 둘을 하나로 묶은 player $[ij]$의 value는 단순히 $i$의 value와 $j$의 value를 더한 것보다 커야 한다.
 
 반대로 negative interaction이면 더 작아야 한다.
 따라서 reduced game에서 $[ij]$의 value는 두 player의 개별 value와 둘 사이의 interaction을 함께 반영해야 한다.
@@ -260,7 +264,7 @@ $$
 논문은 이 생각을 recursive axiom으로 일반화한다.
 핵심 메시지는 다음이다.
 
-> Coalition $S$의 interaction은 $S$ 안의 player들을 묶거나 풀었을 때의 lower-order interaction과 일관되어야 한다.
+Coalition $S$의 interaction은 $S$ 안의 player들을 묶거나 풀었을 때의 lower-order interaction과 일관되어야 한다.
 
 논문은 두 가지 recursive axiom R1, R2를 제시하고, LI, DI, SI 아래에서 둘이 equivalent임을 보인다.
 이 recursive axiom이 중요한 이유는 interaction index를 value에 묶어주기 때문이다.

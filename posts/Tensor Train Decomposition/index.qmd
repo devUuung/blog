@@ -6,6 +6,10 @@ date: "2026-06-22"
 categories: [tensor decomposition, numerical linear algebra, paper review]
 ---
 
+| Venue | Link |
+|---|---|
+| SIAM Journal on Scientific Computing, 2011 | [SIAM](https://epubs.siam.org/doi/10.1137/090752286) |
+
 # 논문이 해결하려는 문제
 
 Oseledets [-@oseledets2011tensor]의 Tensor-Train Decomposition은 고차원 텐서를 효율적으로 표현하고 계산하기 위한 format을 제안하는 논문이다. 여기서 tensor는 단순히 여러 개의 index를 가지는 multidimensional array로 생각하면 된다.
@@ -25,7 +29,7 @@ $$
 $d$가 10, 100처럼 커지면 full tensor를 저장하거나 직접 계산하는 것은 사실상 불가능하다. 이것이 논문이 말하는 차원의 저주(curse of dimensionality)이다.
 따라서 핵심 질문은 다음과 같다.
 
-> 고차원 tensor를 적은 수의 parameter로 표현하면서도, 기본적인 선형대수 연산을 안정적으로 수행할 수 있는가?
+고차원 tensor를 적은 수의 parameter로 표현하면서도, 기본적인 선형대수 연산을 안정적으로 수행할 수 있는가?
 
 논문은 선행 연구이자 기존 format으로 canonical decomposition과 Tucker decomposition을 먼저 언급한다.
 Canonical decomposition은 tensor를 rank-one tensor들의 합으로 표현한다.
@@ -172,7 +176,7 @@ $$
 
 Theorem 2.1의 핵심은 다음과 같다.
 
-> 각 unfolding matrix $A_k$의 rank가 $r_k$이면, TT-rank가 $r_k$ 이하인 TT decomposition이 존재한다.
+각 unfolding matrix $A_k$의 rank가 $r_k$이면, TT-rank가 $r_k$ 이하인 TT decomposition이 존재한다.
 
 이 정리는 단순히 존재성만 말하는 것이 아니다. 증명 과정이 실제로 TT decomposition을 구성하는 방법을 제공한다.
 즉, TT decomposition은 고차원 tensor를 여러 개의 unfolding matrix로 보고, 각 unfolding의 low-rank structure를 순차적으로 뽑아내는 방식이다.
@@ -251,7 +255,7 @@ $$
 여기서 $C$는 상수이다. 즉, TT-SVD가 항상 optimal approximation을 직접 찾는 것은 아니지만, optimal approximation의 error와 비교했을 때 상수배 이내의 error를 보장한다는 의미이다.
 직관적으로 말하면 다음과 같다.
 
-> TT-format은 tensor approximation 문제를 여러 개의 matrix approximation 문제로 나누어 다룬다.
+TT-format은 tensor approximation 문제를 여러 개의 matrix approximation 문제로 나누어 다룬다.
 
 이 점이 canonical decomposition과 큰 차이이다. canonical format은 parameter 수가 적을 수 있지만, rank 계산과 approximation 문제가 불안정할 수 있다. TT-format은 약간 더 많은 parameter를 사용하더라도 SVD 기반의 안정적인 계산 절차를 제공한다.
 
