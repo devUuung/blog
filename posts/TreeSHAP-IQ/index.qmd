@@ -10,7 +10,16 @@ categories: [explainable ai, shapley value, tree ensemble, paper review]
 |---|---|
 | AAAI 2024 | [AAAI Proceedings](https://ojs.aaai.org/index.php/AAAI/article/view/29352) |
 
-# 논문이 해결하려는 문제
+# Abstract
+얕은 의사결정 트리는 해석 가능할 수 있지만, 표 형식 데이터를 다루는 기계 학습 문제에서 종종 최첨단 성능을 보여주는 그라디언트 부스팅 트리와 같은 대규모 앙상블 모델은 여전히 블랙박스 모델로 남아 있습니다.
+이를 해결하기 위해, 샤플리 값(SV)은 예측의 가산적 특징 기여도를 정량화하기 위한 설명 가능한 인공 지능(XAI) 연구에서 잘 알려진 개념입니다.
+모델 특화 방식인 TreeSHAP 방법론은 트리 기반 모델에서 정확한 SV를 추출하는 데 따르는 지수적 복잡도를 해결합니다.
+개별 특징 기여도를 넘어, 샤플리 상호작용은 모든 차수의 복잡한 특징 간 상호작용이 미치는 영향을 밝혀냅니다.
+본 연구에서는 트리 기반 모델의 예측에 대해 모든 차수의 가산적 샤플리 상호작용을 계산하는 효율적인 방법인 TreeSHAP-IQ를 제시합니다.
+TreeSHAP-IQ는 Linear TreeSHAP과 유사하게, 다항식 산술을 활용하여 트리를 단 한 번의 재귀적 탐색으로 상호작용 점수를 계산하는 수학적 프레임워크를 기반으로 합니다.
+우리는 최첨단 트리 앙상블에 TreeSHAP-IQ를 적용하고, 잘 확립된 벤치마크 데이터셋에서 상호작용을 탐구합니다.
+
+# 1 Introduction
 
 Muschalik et al. [-@muschalik2024beyond]의 **Beyond TreeSHAP**은 tree ensemble model의 prediction을 설명할 때, 단일 feature attribution을 넘어서 **feature interaction**까지 효율적으로 계산하는 방법을 제안한다.
 논문에서 제안하는 알고리즘 이름은 **TreeSHAP-IQ**이다. 여기서 IQ는 Interaction Quantification을 뜻한다.
@@ -29,7 +38,7 @@ Tree ensemble은 이런 tree를 여러 개 모아 prediction을 만드는 모델
 Global explanation은 모델 전체의 일반적인 동작을 설명하려는 것이다. 반면 local explanation은 특정 instance $x$ 하나에 대한 prediction을 설명하려는 것이다.
 SHAP은 local explanation에서 가장 많이 쓰이는 방법 중 하나이다 [-@lundberg2017unified].
 
-# SHAP이 하는 일
+## 1.1 SHAP이 하는 일
 
 모델을 다음과 같이 쓰자.
 
@@ -89,7 +98,7 @@ Feature가 $n$개이면 subset은 대략 $2^n$개이다.
 이런 지수적 증가는 feature 수가 조금만 커져도 빠르게 계산 부담을 만든다.
 TreeSHAP은 tree model의 구조를 이용해 이 계산을 polynomial time으로 줄인 방법이다 [-@lundberg2020local].
 
-# 그런데 단일 feature만 보면 부족하다
+## 1.2 그런데 단일 feature만 보면 부족하다
 
 Shapley value는 feature 하나하나의 contribution을 설명한다.
 하지만 실제 모델에서는 feature 하나가 혼자 의미를 갖기보다, 다른 feature와 함께 의미를 갖는 경우가 많다.
@@ -104,11 +113,19 @@ Latitude만 보면 어떤 지역인지 애매할 수 있고, longitude만 봐도
 하지만 TreeSHAP-IQ로 2차 interaction까지 보면, 중요한 설명은 latitude와 longitude의 interaction으로 옮겨간다.
 즉, "위도 feature가 중요하다"보다 "위도와 경도의 조합, 즉 위치가 중요하다"가 더 정확한 설명이 된다.
 
+::: {.asset-slot}
+**Figure 2 자리**
+
+California housing 예시에서 single feature attribution과 pairwise interaction attribution이 어떻게 다르게 보이는지 보여주는 screenshot을 넣을 자리.
+:::
+
 이 차이는 실무적으로 중요하다.
 단일 feature attribution만 보면 모델이 어떤 feature를 직접적으로 사용한다고 착각할 수 있다.
 하지만 interaction attribution을 보면 모델이 feature의 조합을 통해 판단한다는 점을 더 잘 볼 수 있다.
 
-# Shapley interaction을 어떻게 정의할까?
+# 2 Background
+
+## 2.1 Shapley interaction을 어떻게 정의할까?
 
 Feature interaction을 설명하려면 feature 하나가 아니라 feature subset $S \subseteq N$을 본다.
 예를 들어 $S=\{i,j\}$이면 feature $i$와 feature $j$의 pairwise interaction이고, $S=\{i,j,k\}$이면 세 feature의 third-order interaction이다.
@@ -124,7 +141,7 @@ TreeSHAP-IQ 글에서는 다음 정도만 기억하면 된다.
 - 계산에는 $\delta_S(f,T)$라는 discrete difference가 들어간다.
 - n-SII는 maximum order $s_0$까지의 interaction score를 additive explanation으로 쓰기 위한 aggregation이다 [-@bordt2023shapley].
 
-# TreeSHAP은 왜 빠른가?
+## 2.2 TreeSHAP은 왜 빠른가?
 
 일반적인 Shapley value 계산은 feature subset을 모두 고려해야 한다.
 하지만 tree model에서는 계산 구조가 더 특수하다.
@@ -171,7 +188,11 @@ Polynomial을 전개하면 각 coefficient가 특정 크기의 feature subset co
 그 다음 Shapley weight를 coefficient에 곱해 합치면 Shapley value가 나온다.
 이렇게 하면 subset을 직접 모두 순회하지 않고 tree를 한 번 traversal하면서 계산할 수 있다.
 
-# TreeSHAP-IQ의 핵심 아이디어
+# 3 TreeSHAP-IQ
+
+![TreeSHAP-IQ에서 사용하는 tree path와 edge notation 예시](fig.3.png){#fig-treeshap-iq-notation fig-align="center" width="82%"}
+
+## 3.1 TreeSHAP-IQ의 핵심 아이디어
 
 TreeSHAP-IQ는 Linear TreeSHAP의 polynomial arithmetic을 interaction으로 확장한다.
 단일 feature $i$에 대한 contribution이 아니라, feature subset $S$에 대한 interaction score를 계산해야 한다.
@@ -240,7 +261,7 @@ Ancestor correction은 같은 feature가 path에서 여러 번 등장할 때 중
 따라서 TreeSHAP-IQ는 완전히 새로운 계산 원리를 만든다기보다, Linear TreeSHAP의 polynomial representation을 interaction subset $S$에 맞게 확장한다.
 이 점이 논문의 핵심이다.
 
-# 계산 복잡도
+## 3.2 계산 복잡도
 
 논문은 $m$개의 explanation point, leaf 수 $\ell_T$, maximum tree depth $d_{\max}$를 사용해 복잡도를 정리한다.
 Linear TreeSHAP의 computational complexity는 다음과 같다 [-@yu2022linear].
@@ -287,7 +308,13 @@ TreeSHAP-IQ는 일반적인 brute-force 계산보다 훨씬 빠르지만, intera
 즉, any-order를 계산할 수 있다는 말이 모든 order를 항상 싸게 계산할 수 있다는 뜻은 아니다.
 논문의 기여는 tree 구조를 이용해 가능한 한 효율적으로 정확한 interaction score를 계산하는 데 있다.
 
-# SII를 넘어서 CII까지
+::: {.asset-slot}
+**Complexity table 자리**
+
+Linear TreeSHAP, TreeSHAP-IQ, naive computation의 time/storage complexity 비교 table screenshot을 넣을 자리.
+:::
+
+## 3.3 SII를 넘어서 CII까지
 
 논문은 TreeSHAP-IQ가 SII에만 묶이지 않는다는 점도 보인다.
 SII, Shapley Taylor Interaction Index [-@sundararajan2020shapley], Faithful Shapley Interaction Index [-@tsai2023faith] 같은 여러 interaction index는 더 넓은 class인 Cardinal Interaction Index, 즉 CII로 볼 수 있다.
@@ -309,7 +336,7 @@ TreeSHAP-IQ의 polynomial framework에서는 이 차이가 $\psi$라는 coeffici
 따라서 SII를 위한 계산 구조를 유지하면서, weight만 바꾸면 더 넓은 CII class에도 적용할 수 있다.
 다만 FSI처럼 특정 order에 대해서만 명시적인 weighted-sum representation이 알려진 경우에는 적용 범위에 제한이 있다.
 
-# 실험에서 보여준 것
+# 4 Experiments
 
 논문은 TreeSHAP-IQ를 XGBoost, gradient-boosted trees, random forest, decision tree에 적용한다.
 Dataset은 German Credit, Bank, Adult, Bike, COMPAS, Titanic, California housing 등을 사용한다.
@@ -321,6 +348,12 @@ Dataset은 German Credit, Bank, Adult, Bike, COMPAS, Titanic, California housing
 California housing처럼 feature 수가 8개로 작을 때는 speed-up이 크지 않다.
 이는 당연하다. Feature 수가 작으면 brute-force 방식의 조합 폭발도 상대적으로 약하기 때문이다.
 
+::: {.asset-slot}
+**Table 1 자리**
+
+Benchmark dataset별 naive computation 대비 TreeSHAP-IQ speed-up table screenshot을 넣을 자리.
+:::
+
 둘째, interaction score가 실제 설명의 내용을 바꾼다.
 German Credit 예시에서는 credit amount가 단독으로 강한 feature라기보다 installment rate, duration과 interaction하면서 prediction에 영향을 준다.
 California housing 예시에서는 longitude와 latitude의 개별 효과보다 두 feature의 interaction이 실제 위치 정보를 설명한다.
@@ -328,7 +361,13 @@ Bike regression 예시에서는 evening hour와 non-working day의 interaction�
 
 이 결과들은 TreeSHAP-IQ가 단순히 더 많은 숫자를 계산하는 도구가 아니라, 해석의 단위를 feature에서 feature subset으로 확장한다는 점을 보여준다.
 
-# 한계와 주의할 점
+::: {.asset-slot}
+**Experiment figure 자리**
+
+German Credit, California housing, Bike regression 등 interaction explanation 예시 figure screenshot을 넣을 자리.
+:::
+
+# 5 Limitations and Future Work
 
 논문이 명확히 지적하는 한계는 absent feature를 어떻게 모델링하느냐에 따라 explanation이 달라진다는 점이다.
 Shapley 기반 explanation에서는 $f(T)$, 즉 feature subset $T$만 알려졌을 때의 model output을 정의해야 한다.
@@ -351,7 +390,7 @@ Interventional SHAP interaction을 더 효율적으로 계산하는 별도 연�
 이 차이는 단순한 구현 디테일이 아니다.
 같은 모델과 같은 입력이라도 absent feature를 다르게 정의하면 Shapley value와 interaction score가 달라질 수 있다.
 
-# 정리
+# 6 Conclusion
 
 이 논문의 핵심은 다음 문장으로 요약할 수 있다.
 

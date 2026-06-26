@@ -81,3 +81,20 @@ body.quarto-dark .pseudocode .math {
 .listing-description {
   color: var(--bs-secondary-color);
 }
+
+.asset-slot {
+  background: var(--bs-tertiary-bg);
+  border: 1px dashed var(--bs-border-color);
+  border-radius: 6px;
+  color: var(--bs-secondary-color);
+  padding: 1rem 1.125rem;
+  margin: 1.25rem 0;
+}
+
+.asset-slot > :first-child {
+  margin-top: 0;
+}
+
+.asset-slot > :last-child {
+  margin-bottom: 0;
+}
