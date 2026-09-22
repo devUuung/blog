@@ -5,31 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ungsik Kim의 연구 노트와 개인 홈페이지">
   <title>Ungsik Kim's Home Page</title>
+  <style>
+    body { max-width: 1000px; }
+    .layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 48px; }
+    .sidebar { position: sticky; top: 20px; align-self: start; }
+    .sidebar h1 { margin-top: 0; }
+    .sidebar nav p { margin: 8px 0; }
+    .content { min-width: 0; }
+    .content > :first-child { margin-top: 1em; }
+    @media (max-width: 700px) {
+      .layout { display: block; }
+      .sidebar { position: static; border-bottom: 1px solid; padding-bottom: 16px; }
+      .sidebar nav p { display: inline; margin-right: 16px; }
+    }
+  </style>
 </head>
 
 <body>
-  <main>
-    <h1>Ungsik Kim's Home Page</h1>
+  <main class="layout">
+    <aside class="sidebar">
+      <h1>Ungsik Kim</h1>
 
-    <p>Research notes, paper reviews, and small experiments.</p>
+      <p>Research notes and small experiments.</p>
 
-    <p>Gyeongsang National University</p>
+      <nav aria-label="Site navigation">
+        <p><a href="#notes">Research Notes</a></p>
+        <p><a href="#about">About</a></p>
+      </nav>
 
-    <p>
-      My interests include explainable AI, recommender systems,
-      numerical linear algebra, tensor networks, and computer science theory.
-    </p>
+      <p><a href="https://github.com/devUuung">Github</a></p>
+    </aside>
 
-    <p>
-      <a href="https://github.com/devUuung">Github profile</a>
-    </p>
-
-    <p>
-      <a href="#notes">Research notes</a> ·
-      <a href="#about">About</a>
-    </p>
-
-    <section id="notes">
+    <div class="content">
+      <section id="notes">
       <h2>Research notes</h2>
 
       <p>
@@ -69,11 +77,11 @@
         <p><a href="#tensor-train">Tensor-Train Decomposition</a> (작성중)</p>
         <p><a href="#first-note">첫 연구 노트</a></p>
       </details>
-    </section>
+      </section>
 
-    <hr>
+      <hr>
 
-    <section id="trace">
+      <section id="trace">
       <h2>TRACE: Targeted Ranking-Aware Counterfactual Explanation</h2>
       <p><time datetime="2026-09-22">September 22, 2026</time></p>
 
@@ -98,70 +106,70 @@
       <p>
         <a href="https://github.com/devUuung/TRACE">Available code</a>
       </p>
-    </section>
+      </section>
 
-    <section id="fast-treeshap">
+      <section id="fast-treeshap">
       <h2>Fast TreeSHAP</h2>
       <p><time datetime="2026-06-25">June 25, 2026</time></p>
       <p>
         Notes on reducing the computational bottleneck of TreeSHAP while
         preserving exact Shapley values.
       </p>
-    </section>
+      </section>
 
-    <section id="shap-tensor">
+      <section id="shap-tensor">
       <h2>SHAP Meets Tensor Networks</h2>
       <p><time datetime="2026-06-25">June 25, 2026</time></p>
       <p>
         Why Tensor Train structure makes exact SHAP computation tractable and
         suitable for parallel computation.
       </p>
-    </section>
+      </section>
 
-    <section id="tree-shap-iq">
+      <section id="tree-shap-iq">
       <h2>TreeSHAP-IQ</h2>
       <p><time datetime="2026-06-24">June 24, 2026</time></p>
       <p>
         A note on efficiently computing Shapley interactions in tree ensembles.
       </p>
-    </section>
+      </section>
 
-    <section id="p-np">
+      <section id="p-np">
       <h2>P와 NP 문제</h2>
       <p><time datetime="2026-06-22">June 22, 2026</time></p>
       <p>
         The difference between problems whose answers can be found quickly and
         problems whose candidate answers can be verified quickly.
       </p>
-    </section>
+      </section>
 
-    <section id="linear-system">
+      <section id="linear-system">
       <h2>Well-posedness와 Ill-posedness 문제</h2>
       <p><time datetime="2026-06-21">June 21, 2026</time></p>
       <p>
         Existence, uniqueness, stability, and condition numbers in linear
         systems and inverse problems.
       </p>
-    </section>
+      </section>
 
-    <section id="shapley-interaction">
+      <section id="shapley-interaction">
       <h2>Shapley Interaction Index</h2>
       <p>작성중</p>
-    </section>
+      </section>
 
-    <section id="tensor-train">
+      <section id="tensor-train">
       <h2>Tensor-Train Decomposition</h2>
       <p>작성중</p>
-    </section>
+      </section>
 
-    <section id="first-note">
+      <section id="first-note">
       <h2>첫 연구 노트</h2>
       <p>연구하면서 배운 이론을 다시 꺼내 보기 쉽게 정리하는 방법.</p>
-    </section>
+      </section>
 
-    <hr>
+      <hr>
 
-    <section id="about">
+      <section id="about">
       <h2>About</h2>
       <p>
         This is a small personal website for notes that do not need a large
@@ -172,14 +180,15 @@
         If you have any questions or suggestions, write to
         <i>hello [at] ungsik [dot] com</i>.
       </p>
-    </section>
+      </section>
 
-    <hr>
+      <hr>
 
-    <footer>
+      <footer>
       <p><a href="https://ungsik.com/">https://ungsik.com</a></p>
       <p><time datetime="2026-09-23">Last update: September 23, 2026</time></p>
-    </footer>
+      </footer>
+    </div>
   </main>
 </body>
 </html>
