@@ -11,13 +11,14 @@
     .sidebar { position: sticky; top: 20px; align-self: start; }
     .sidebar h1 { margin-top: 0; }
     .sidebar nav p { margin: 8px 0; }
-    .content { min-width: 0; }
+    .content { min-width: 0; border-left: 1px solid; padding-left: 48px; }
     article { margin: 32px 0; }
     article + article { border-top: 1px solid; padding-top: 24px; }
     @media (max-width: 700px) {
       .layout { display: block; }
       .sidebar { position: static; border-bottom: 1px solid; padding-bottom: 16px; }
       .sidebar nav p { display: inline; margin-right: 16px; }
+      .content { border-left: 0; padding-left: 0; }
     }
   </style>
 </head>
