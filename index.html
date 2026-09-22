@@ -3,36 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>문서 제목</title>
-  <!-- CSS 파일 연결 (선택 사항) -->
-  <!-- <link rel="stylesheet" href="style.css"> -->
-  <style>
-    /* 내부 스타일 시트 */
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-    }
-  </style>
+  <meta name="description" content="Ungsik Kim의 연구 노트와 개인 홈페이지">
+  <title>Ungsik Kim's Home Page</title>
 </head>
+
 <body>
-
-  <header>
-    <h1>Ungsik Kim</h1>
-  </header>
-
   <main>
-    <p>여기에 본문 내용을 작성하세요.</p>
+    <h1>Ungsik Kim's Home Page</h1>
+
+    <p>Research notes, paper reviews, and small experiments.</p>
+
+    <p>Gyeongsang National University</p>
+
+    <p>
+      My interests include explainable AI, recommender systems,
+      numerical linear algebra, tensor networks, and computer science theory.
+    </p>
+
+    <p>
+      <a href="https://github.com/devUuung">Github profile</a>
+    </p>
+
+    <p>
+      <a href="#notes">Research notes</a> ·
+      <a href="#about">About</a>
+    </p>
+
+    <section id="notes">
+      <h2>Research notes</h2>
+
+      <p>
+        <a href="#trace">TRACE: Targeted Ranking-Aware Counterfactual Explanation</a>
+        (2026, sequential recommendation)
+      </p>
+
+      <p>
+        <a href="#fast-treeshap">Fast TreeSHAP</a>
+        (paper review, explainable AI)
+      </p>
+
+      <p>
+        <a href="#shap-tensor">SHAP Meets Tensor Networks</a>
+        (paper review, tensor networks)
+      </p>
+
+      <p>
+        <a href="#tree-shap-iq">TreeSHAP-IQ</a>
+        (paper review, feature interaction)
+      </p>
+
+      <p>
+        <a href="#p-np">P와 NP 문제</a>
+        (complexity theory)
+      </p>
+
+      <p>
+        <a href="#linear-system">Well-posedness와 Ill-posedness 문제</a>
+        (linear system, mathematics)
+      </p>
+
+      <details>
+        <summary>More notes</summary>
+
+        <p><a href="#shapley-interaction">Shapley Interaction Index</a> (작성중)</p>
+        <p><a href="#tensor-train">Tensor-Train Decomposition</a> (작성중)</p>
+        <p><a href="#first-note">첫 연구 노트</a></p>
+      </details>
+    </section>
+
+    <hr>
+
+    <section id="trace">
+      <h2>TRACE: Targeted Ranking-Aware Counterfactual Explanation</h2>
+      <p><time datetime="2026-09-22">September 22, 2026</time></p>
+
+      <p>
+        Sequential recommender systems use the order of user interactions to
+        predict the next item, but it is difficult to explain why a particular
+        item was recommended.
+      </p>
+
+      <p>
+        TRACE studies ranking-aware counterfactual explanation. The search is
+        divided into influence-guided position selection, plausibility-aware
+        candidate retrieval, and actual-margin beam pruning.
+      </p>
+
+      <p>
+        The central idea is simple: before evaluating many mutations, structure
+        the search space so that the system first considers positions and items
+        that can plausibly change the ranking.
+      </p>
+
+      <p>
+        <a href="https://github.com/devUuung/TRACE">Available code</a>
+      </p>
+    </section>
+
+    <section id="fast-treeshap">
+      <h2>Fast TreeSHAP</h2>
+      <p><time datetime="2026-06-25">June 25, 2026</time></p>
+      <p>
+        Notes on reducing the computational bottleneck of TreeSHAP while
+        preserving exact Shapley values.
+      </p>
+    </section>
+
+    <section id="shap-tensor">
+      <h2>SHAP Meets Tensor Networks</h2>
+      <p><time datetime="2026-06-25">June 25, 2026</time></p>
+      <p>
+        Why Tensor Train structure makes exact SHAP computation tractable and
+        suitable for parallel computation.
+      </p>
+    </section>
+
+    <section id="tree-shap-iq">
+      <h2>TreeSHAP-IQ</h2>
+      <p><time datetime="2026-06-24">June 24, 2026</time></p>
+      <p>
+        A note on efficiently computing Shapley interactions in tree ensembles.
+      </p>
+    </section>
+
+    <section id="p-np">
+      <h2>P와 NP 문제</h2>
+      <p><time datetime="2026-06-22">June 22, 2026</time></p>
+      <p>
+        The difference between problems whose answers can be found quickly and
+        problems whose candidate answers can be verified quickly.
+      </p>
+    </section>
+
+    <section id="linear-system">
+      <h2>Well-posedness와 Ill-posedness 문제</h2>
+      <p><time datetime="2026-06-21">June 21, 2026</time></p>
+      <p>
+        Existence, uniqueness, stability, and condition numbers in linear
+        systems and inverse problems.
+      </p>
+    </section>
+
+    <section id="shapley-interaction">
+      <h2>Shapley Interaction Index</h2>
+      <p>작성중</p>
+    </section>
+
+    <section id="tensor-train">
+      <h2>Tensor-Train Decomposition</h2>
+      <p>작성중</p>
+    </section>
+
+    <section id="first-note">
+      <h2>첫 연구 노트</h2>
+      <p>연구하면서 배운 이론을 다시 꺼내 보기 쉽게 정리하는 방법.</p>
+    </section>
+
+    <hr>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        This is a small personal website for notes that do not need a large
+        publishing system.
+      </p>
+
+      <p>
+        If you have any questions or suggestions, write to
+        <i>hello [at] ungsik [dot] com</i>.
+      </p>
+    </section>
+
+    <hr>
+
+    <footer>
+      <p><a href="https://ungsik.com/">https://ungsik.com</a></p>
+      <p><time datetime="2026-09-23">Last update: September 23, 2026</time></p>
+    </footer>
   </main>
-
-  <footer>
-    <p>&copy; ungsik.com</p>
-  </footer>
-
-  <!-- JavaScript 파일 연결 (선택 사항) -->
-  <!-- <script src="script.js"></script> -->
-  <script>
-    // 자바스크립트 코드 작성
-  </script>
 </body>
 </html>
