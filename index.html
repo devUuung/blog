@@ -1,140 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Ungsik Kim의 연구 노트." />
-    <title>ung / notes</title>
-    <style>
-      :root {
-        --paper: #f7f6f1;
-        --ink: #252522;
-        --muted: #77766f;
-        --line: #d8d6ce;
-        --accent: #ae492f;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문서 제목</title>
+  <!-- CSS 파일 연결 (선택 사항) -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    /* 내부 스타일 시트 */
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
 
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 24px;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 17px;
-        line-height: 1.7;
-      }
+  <header>
+    <h1>Ungsik Kim</h1>
+  </header>
 
-      a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }
-      a:hover { color: var(--accent); }
-      .mono, nav, time, .tag, footer, small { font-family: "Courier New", Courier, monospace; }
-      header { display: flex; align-items: baseline; justify-content: space-between; padding: 26px 0; border-bottom: 1px solid var(--line); }
-      .brand { font: 700 15px "Courier New", Courier, monospace; letter-spacing: .02em; text-decoration: none; }
-      .brand span, .eyebrow { color: var(--accent); }
-      nav { display: flex; gap: 18px; font-size: 12px; }
-      nav a { text-decoration: none; }
-      main { padding-bottom: 88px; }
-      .hero { padding: 105px 0 92px; border-bottom: 1px solid var(--line); }
-      .eyebrow { margin: 0 0 15px; font: 11px "Courier New", Courier, monospace; letter-spacing: .14em; }
-      h1, h2, h3 { font-weight: 400; }
-      h1 { max-width: 720px; margin: 0 0 22px; font-size: clamp(44px, 8vw, 82px); letter-spacing: -.06em; line-height: .98; }
-      .hero p:last-child { max-width: 520px; margin: 0; color: var(--muted); }
-      section { padding-top: 76px; }
-      .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
-      h2 { margin: 0; font-size: 30px; letter-spacing: -.04em; }
-      .count { color: var(--muted); font: 11px "Courier New", Courier, monospace; }
-      .post-list { border-top: 1px solid var(--ink); }
-      article { padding: 25px 0 28px; border-bottom: 1px solid var(--line); }
-      .post-meta { display: flex; gap: 12px; align-items: baseline; color: var(--muted); font-size: 12px; }
-      article h3 { margin: 7px 0 5px; font-size: 25px; line-height: 1.25; }
-      article h3 a { text-decoration: none; }
-      article p { max-width: 680px; margin: 0 0 10px; color: var(--muted); font-size: 15px; }
-      .tag { color: var(--accent); font-size: 11px; }
-      details { margin-top: 17px; border-top: 1px dotted var(--line); }
-      summary { width: fit-content; padding-top: 11px; color: var(--accent); cursor: pointer; font: 12px "Courier New", Courier, monospace; }
-      .note-body { max-width: 680px; padding-top: 13px; color: var(--ink); font-size: 15px; }
-      .note-body p { color: var(--ink); }
-      .note-body blockquote { margin: 18px 0; padding-left: 17px; border-left: 2px solid var(--accent); color: var(--muted); }
-      .about { max-width: 650px; border-top: 1px solid var(--line); }
-      .about p { color: var(--muted); }
-      footer { display: flex; justify-content: space-between; padding: 22px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+  <main>
+    <p>여기에 본문 내용을 작성하세요.</p>
+  </main>
 
-      @media (max-width: 620px) {
-        body { padding: 0 16px; }
-        header { align-items: flex-start; flex-direction: column; gap: 10px; }
-        .hero { padding: 75px 0 68px; }
-        nav { gap: 13px; }
-        footer { display: block; }
-        footer span + span { display: block; margin-top: 5px; }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <a class="brand" href="./">ung<span>/</span>notes</a>
-      <nav aria-label="주 메뉴">
-        <a href="#notes">notes</a>
-        <a href="#about">about</a>
-      </nav>
-    </header>
+  <footer>
+    <p>&copy; ungsik.com</p>
+  </footer>
 
-    <main>
-      <section class="hero">
-        <p class="eyebrow">RESEARCH NOTES / 2026</p>
-        <h1>읽은 것을<br />다시 생각하는 기록.</h1>
-        <p>이론, 논문, 수식, 구현을 공부하면서 생긴 질문과 답을 천천히 적어 둡니다.</p>
-      </section>
-
-      <section id="notes" aria-labelledby="notes-title">
-        <div class="section-title">
-          <h2 id="notes-title">notes</h2>
-          <span class="count">01 / 01</span>
-        </div>
-
-        <div class="post-list">
-          <article id="trace">
-            <div class="post-meta"><time datetime="2026-09-22">2026.09.22</time><span class="tag">paper note</span></div>
-            <h3><a href="#trace">TRACE: Targeted Ranking-Aware Counterfactual Explanation</a></h3>
-            <p>Sequential recommendation에서 ranking-aware counterfactual explanation을 어떻게 더 효율적으로 탐색할 것인가.</p>
-            <div class="tag">#recommender-systems&nbsp;&nbsp; #counterfactual-explanation</div>
-            <details>
-              <summary>read note</summary>
-              <div class="note-body">
-                <p>순차 추천 시스템은 사용자의 상호작용 순서를 이용해 다음 아이템을 예측하지만, 왜 특정 아이템이 추천되었는지 설명하기 어렵습니다. Counterfactual explanation은 사용자의 시퀀스를 조금 바꿨을 때 추천 결과가 어떻게 달라지는지 보여주는 방식입니다.</p>
-                <blockquote>좋은 설명은 단순히 결과를 바꾸는 것이 아니라, 어떤 위치를 왜 바꾸어야 하는지 알려줘야 합니다.</blockquote>
-                <p>TRACE는 이 탐색을 세 단계로 나눕니다. 먼저 영향력이 큰 위치를 고르고, 그 위치에 들어갈 만한 후보를 검색한 다음, 실제 ranking margin을 기준으로 beam을 pruning합니다. 핵심은 mutation을 무작정 많이 시도하는 것이 아니라 평가 전에 search space를 구조화하는 데 있습니다.</p>
-              </div>
-            </details>
-          </article>
-
-          <article>
-            <div class="post-meta"><time datetime="2026-06-25">2026.06.25</time><span class="tag">coming next</span></div>
-            <h3>Fast TreeSHAP 논문 리뷰</h3>
-            <p>TreeSHAP의 exactness는 유지하면서 반복 계산을 줄이는 두 가지 알고리즘을 정리할 예정입니다.</p>
-            <div class="tag">#explainable-ai&nbsp;&nbsp; #shapley-value</div>
-          </article>
-
-          <article>
-            <div class="post-meta"><time datetime="2026-06-22">2026.06.22</time><span class="tag">coming next</span></div>
-            <h3>P와 NP 문제</h3>
-            <p>답을 빠르게 찾는 문제와 답이 맞는지 빠르게 검증하는 문제의 차이를 정리할 예정입니다.</p>
-            <div class="tag">#complexity-theory&nbsp;&nbsp; #math</div>
-          </article>
-        </div>
-      </section>
-
-      <section id="about" class="about" aria-labelledby="about-title">
-        <p class="eyebrow">ABOUT</p>
-        <h2 id="about-title">작게 쓰고, 오래 보기.</h2>
-        <p>이 사이트는 빌드 도구, JavaScript, 외부 CSS 없이 HTML 파일 하나로 구성되어 있습니다. 필요한 글은 아래에 직접 추가하면 됩니다.</p>
-      </section>
-    </main>
-
-    <footer>
-      <span>© 2026 Ungsik Kim</span>
-      <span>plain html / no framework</span>
-    </footer>
-  </body>
+  <!-- JavaScript 파일 연결 (선택 사항) -->
+  <!-- <script src="script.js"></script> -->
+  <script>
+    // 자바스크립트 코드 작성
+  </script>
+</body>
 </html>
