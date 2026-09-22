@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ungsik Kim's research notes">
+  <title>Research Notes - Ungsik Kim</title>
+  <style>
+    body { max-width: 1000px; }
+    .layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 48px; }
+    .sidebar { position: sticky; top: 20px; align-self: start; }
+    .sidebar h1 { margin-top: 0; }
+    .sidebar nav p { margin: 8px 0; }
+    .content { min-width: 0; }
+    article { margin: 32px 0; }
+    article + article { border-top: 1px solid; padding-top: 24px; }
+    @media (max-width: 700px) {
+      .layout { display: block; }
+      .sidebar { position: static; border-bottom: 1px solid; padding-bottom: 16px; }
+      .sidebar nav p { display: inline; margin-right: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="layout">
+    <aside class="sidebar">
+      <h1>Ungsik Kim</h1>
+      <p>Research notes and small experiments.</p>
+      <nav aria-label="Site navigation">
+        <p><a href="index.html">Home</a></p>
+        <p><a href="research-notes.html">Research Notes</a></p>
+        <p><a href="about.html">About</a></p>
+      </nav>
+      <p><a href="https://github.com/devUuung">Github</a></p>
+    </aside>
+
+    <div class="content">
+      <h2>Research Notes</h2>
+      <p>이론, 논문, 수식, 구현을 공부하면서 생긴 질문과 답을 적어 둡니다.</p>
+
+      <article id="trace">
+        <h3>TRACE: Targeted Ranking-Aware Counterfactual Explanation</h3>
+        <p><time datetime="2026-09-22">September 22, 2026</time></p>
+        <p>
+          Sequential recommender systems use the order of user interactions to
+          predict the next item, but it is difficult to explain why a particular
+          item was recommended.
+        </p>
+        <p>
+          TRACE studies ranking-aware counterfactual explanation. The search is
+          divided into influence-guided position selection, plausibility-aware
+          candidate retrieval, and actual-margin beam pruning.
+        </p>
+        <p><a href="https://github.com/devUuung/TRACE">Available code</a></p>
+      </article>
+
+      <article id="fast-treeshap">
+        <h3>Fast TreeSHAP</h3>
+        <p><time datetime="2026-06-25">June 25, 2026</time></p>
+        <p>TreeSHAP의 exactness는 유지하면서 반복 계산을 줄이는 두 가지 알고리즘을 정리합니다.</p>
+      </article>
+
+      <article id="shap-tensor">
+        <h3>SHAP Meets Tensor Networks</h3>
+        <p><time datetime="2026-06-25">June 25, 2026</time></p>
+        <p>Tensor Train 구조에서 exact SHAP 계산이 tractable해지는 이유를 정리합니다.</p>
+      </article>
+
+      <article id="tree-shap-iq">
+        <h3>TreeSHAP-IQ</h3>
+        <p><time datetime="2026-06-24">June 24, 2026</time></p>
+        <p>Tree ensemble에서 Shapley interaction을 효율적으로 계산하는 방법입니다.</p>
+      </article>
+
+      <article id="p-np">
+        <h3>P와 NP 문제</h3>
+        <p><time datetime="2026-06-22">June 22, 2026</time></p>
+        <p>답을 빠르게 찾는 문제와 후보 답을 빠르게 검증하는 문제의 차이를 정리합니다.</p>
+      </article>
+
+      <article id="linear-system">
+        <h3>Well-posedness와 Ill-posedness 문제</h3>
+        <p><time datetime="2026-06-21">June 21, 2026</time></p>
+        <p>선형시스템과 역문제에서 existence, uniqueness, stability를 살펴봅니다.</p>
+      </article>
+
+      <details>
+        <summary>More notes</summary>
+        <p>Shapley Interaction Index (작성중)</p>
+        <p>Tensor-Train Decomposition (작성중)</p>
+        <p>첫 연구 노트</p>
+      </details>
+    </div>
+  </main>
+</body>
+</html>
