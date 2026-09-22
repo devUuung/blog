@@ -3,131 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Ungsik Kim의 연구 노트와 논문 리뷰를 PDF로 모아둔 공간입니다." />
-    <title>ung / research notes</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Research note</title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background: #202020;
+      }
+
+      embed {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="shell header-inner">
-        <a class="wordmark" href="./">ung<span>/</span>notes</a>
-        <nav aria-label="주 메뉴">
-          <a href="#notes">notes</a>
-          <a href="#about">about</a>
-          <a href="https://github.com/devUuung/blog">github ↗</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="shell">
-      <section class="intro" aria-labelledby="intro-title">
-        <p class="kicker">RESEARCH NOTES / 2026</p>
-        <h1 id="intro-title">생각을 오래 남겨두기 위한<br />작은 연구 노트.</h1>
-        <p class="intro-copy">이론, 논문, 구현을 읽고 다시 설명해 보는 공간입니다.<br />글은 Overleaf에서 쓰고, 완성된 PDF를 이곳에 보관합니다.</p>
-      </section>
-
-      <section id="notes" class="notes-section" aria-labelledby="notes-title">
-        <div class="section-heading">
-          <p class="kicker">ARCHIVE</p>
-          <h2 id="notes-title">notes</h2>
-          <p class="section-count">08 notes</p>
-        </div>
-
-        <div class="note-list">
-          <article class="note-row">
-            <time datetime="2026-06-25">2026.06.25</time>
-            <div class="note-body">
-              <h3>Fast TreeSHAP 논문 리뷰</h3>
-              <p>TreeSHAP 계산 병목을 줄이기 위한 Fast TreeSHAP v1/v2 알고리즘 정리</p>
-              <div class="tags"><span>explainable ai</span><span>paper review</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-25">2026.06.25</time>
-            <div class="note-body">
-              <h3>SHAP Meets Tensor Networks 논문 리뷰</h3>
-              <p>Tensor Network와 Tensor Train 구조에서 exact SHAP 계산이 tractable해지는 이유</p>
-              <div class="tags"><span>tensor network</span><span>shapley value</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-24">2026.06.24</time>
-            <div class="note-body">
-              <h3>Shapley Interaction Index 논문 리뷰 <em>(작성중)</em></h3>
-              <p>Grabisch and Roubens 1999의 interaction index axiomatization 흐름 정리</p>
-              <div class="tags"><span>game theory</span><span>interaction</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-24">2026.06.24</time>
-            <div class="note-body">
-              <h3>TreeSHAP-IQ 논문 리뷰 <em>(작성중)</em></h3>
-              <p>Tree ensemble에서 Shapley interaction을 효율적으로 계산하는 방법</p>
-              <div class="tags"><span>explainable ai</span><span>tree ensemble</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-22">2026.06.22</time>
-            <div class="note-body">
-              <h3>Tensor-Train Decomposition 논문 리뷰 <em>(작성중)</em></h3>
-              <p>Oseledets 2011의 Tensor Train format, TT-SVD, TT-rounding 흐름 정리</p>
-              <div class="tags"><span>tensor decomposition</span><span>linear algebra</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-22">2026.06.22</time>
-            <div class="note-body">
-              <h3>P와 NP 문제</h3>
-              <p>풀기 쉬운 문제와 검증하기 쉬운 문제의 차이</p>
-              <div class="tags"><span>complexity theory</span><span>math</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-21">2026.06.21</time>
-            <div class="note-body">
-              <h3>Well-posedness와 Ill-posedness 문제</h3>
-              <p>선형시스템에서 문제의 안정성과 조건수를 이해하기</p>
-              <div class="tags"><span>linear system</span><span>math</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-
-          <article class="note-row">
-            <time datetime="2026-06-21">2026.06.21</time>
-            <div class="note-body">
-              <h3>첫 연구 노트</h3>
-              <p>연구하면서 배운 이론을 다시 꺼내 보기 쉽게 정리하는 방법</p>
-              <div class="tags"><span>meta</span><span>note</span></div>
-            </div>
-            <span class="file-state">PDF 준비 중</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="about" class="about-section" aria-labelledby="about-title">
-        <p class="kicker">ABOUT</p>
-        <h2 id="about-title">읽고, 쓰고, 다시 생각하기.</h2>
-        <p>이 블로그의 원본은 Overleaf 문서입니다. 완성한 글을 PDF로 내려받아 <code>/pdf</code> 폴더에 올리고, 위 목록에 파일 링크를 연결합니다.</p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-inner">
-        <span>© 2026 Ungsik Kim</span>
-        <span>plain html · pdf archive</span>
-      </div>
-    </footer>
+    <!-- PDF 파일 경로만 직접 바꾸면 됩니다. -->
+    <embed src="pdf/your-file.pdf" type="application/pdf" />
   </body>
 </html>
