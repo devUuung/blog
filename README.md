@@ -1,48 +1,23 @@
-# Blog
+# ung / research notes
 
-Quarto로 만든 연구 노트 블로그입니다.
+Overleaf에서 작성한 연구 노트 PDF를 GitHub Pages로 공개하는 작은 정적 블로그입니다. 빌드 도구나 CMS 없이 `index.html`과 PDF 파일만 사용합니다.
 
-## Local commands
+## 글 올리기
 
-```bash
-quarto render
+1. Overleaf에서 문서를 PDF로 내려받습니다.
+2. PDF를 `pdf/` 폴더에 넣습니다.
+3. `index.html`의 해당 노트에서 `PDF 준비 중`을 PDF 링크로 바꿉니다.
+
+예시:
+
+```html
+<a class="file-state" href="./pdf/fast-treeshap.pdf">PDF ↗</a>
 ```
 
-정적 사이트를 `_site/`에 생성합니다.
+파일명은 영문 소문자와 하이픈을 사용하는 것을 권장합니다.
 
-```bash
-quarto preview . --no-browser --port 4321
-```
+## 배포
 
-로컬 미리보기를 실행합니다. 브라우저에서 <http://localhost:4321/>을 열면 됩니다.
+`main` 브랜치에 push하면 `.github/workflows/publish.yml`이 루트의 정적 파일을 GitHub Pages에 배포합니다. 저장소 Settings → Pages에서 Source를 **GitHub Actions**로 설정하면 됩니다.
 
-## Writing posts
-
-새 글은 `posts/` 아래에 폴더를 만들고 `index.qmd`를 추가합니다.
-
-```text
-posts/
-  my-topic/
-    index.qmd
-```
-
-글의 기본 front matter 예시는 다음과 같습니다.
-
-```yaml
----
-title: "글 제목"
-description: "짧은 설명"
-author: "Ungsik Kim"
-date: "2026-06-21"
-categories: [theory, paper]
----
-```
-
-## Deployment
-
-`.github/workflows/publish.yml`은 GitHub Pages 배포용 워크플로입니다.
-
-1. GitHub에 새 저장소를 만듭니다.
-2. 이 폴더를 remote에 연결하고 `main` 브랜치로 push합니다.
-3. 저장소 Settings > Pages에서 Source를 GitHub Actions로 설정합니다.
-4. `_quarto.yml`의 `website.site-url`과 GitHub 링크를 실제 주소로 바꿉니다.
+기존 Quarto 원본은 `legacy-quarto/`에 보관해 두었습니다. PDF로 옮긴 뒤 필요 없으면 삭제해도 됩니다.
